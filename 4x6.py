@@ -330,24 +330,15 @@ def Predict(From = 'finaltest_tr', Truncated = 'finaltest_m', Temp = None, Model
 
 
 
-'''
 # Этап первый. Готовим файлы обучающего набора
 List0, _ = TestMaskes(Calculated=f'{CrPath}train_m/*.png', Tested = f'{CrPath}train/')
 GenerateDataset('FullTrain', np.array(List0[:,0], dtype = np.int32), (List0[:,1]>0.45).sum())
 GenerateTrainFiles('FullTrain/Res', 'FullTrain/Res', 'FullTrain', BadList = TestTruncDataset(fr'{CrPath}FullTrain/Res/'))
 TestTruncDataset('FullTrain/Res/')
 
-#разбивает уже обрезанные в finaltest_m файлы на 24 части, и заносит в фай  л тестирования.
+#разбивает уже обрезанные в finaltest_m файлы на 24 части, и заносит в файл тестирования.
 Predict(FirstCall = True, From = 'finaltest_m', Temp = 'finaltest_tr')
-'''
 
-
-#TestTrainFile(ID= 0)
-
-
-
-#TruncImg(fr'{CrPath}train2/7.png', fr'{CrPath}train/Res/')
-#GenerateTestDataset()
-
-Predict(From = 'finaltest_tr')
+# Версия Predict для запуска при уже развернутых каталогах
+#Predict(From = 'finaltest_tr')
 
